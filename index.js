@@ -1,10 +1,23 @@
-
-
 const express = require('express');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 const app = express();
 
+//new instance of goo strat
+//passport will use specific strategy passport.use
+passport.use(new GoogleStrategy());
 
-/* route handler:
+
+
+
+
+
+
+
+
+/* ==============================================================
+ * route handler:
  * app: express server that handlers are registered to
  * get: handler that retrieves information
  * '/': the specific route being visited
@@ -13,9 +26,10 @@ const app = express();
  * res.send(): response data inside send()
  * () =>: second argument, called automatically when route called
  */
-app.get('/', (req, res) => {
-	res.send({ hi: 'there' });
-});
+// app.get('/', (req, res) => {
+// 	res.send({ hi: 'there' });
+// });
+// ==============================================================
 
 
 /* DYNAMIC PORT BINDING
