@@ -38,18 +38,19 @@ passport.use(
 		//trust proxy (https ok)
 		proxy: true
 
-	}, (accessToken, refreshToken, profile, done) => {
+	}, async (accessToken, refreshToken, profile, done) => {
 		//this is a promise
-		User.findOne({ googleID: profile.id }).then((existingUser) => {
-			if (existingUser) {
-				done(null, existingUser);
-			} else {
-				//generate new user, save to database
-				new User({ googleID: profile.id })
-					.save()
-					.then((user) => done(null, user));
-			}
-		})
+		let existingUser = await User.findOne({ googleID: profile.id })
+		if (existingUser) {
+
+			return done(null, existingUser);
+
+		}
+			
+		//generate new user, save to database
+		let user = await new User({ googleID: profile.id }).save()
+		done(null, user);
+		
 
 	})
 );
