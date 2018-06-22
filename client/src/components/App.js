@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+//take all defined actions and assign them to object actions
+import * as actions from '../actions'
 import Header from './Header'
 
 
@@ -10,19 +13,27 @@ const Landing = () => <h2>Landing</h2>
 
 
 //BrowserRouter can only have 1 child element
-const App = () => {
-	return (
-		<div className = "container">
-			<BrowserRouter>
-				<div>
-					<Header />
-					<Route exact path = "/" component = { Landing }></Route>
-					<Route exact path = "/surveys" component = { Dashboard }></Route>
-					<Route path = "/surveys/new" component = { SurveyNew }></Route>
-				</div>
-			</BrowserRouter>
-		</div>
-	);
+class App extends Component {
+	//wire up action creator via connect helper from react-redux
+	componentDidMount() {
+		this.props.fetchUser();
+	}
+
+	render() {
+		return (
+			<div className = "container">
+				<BrowserRouter>
+					<div>
+						<Header />
+						<Route exact path = "/" component = { Landing }></Route>
+						<Route exact path = "/surveys" component = { Dashboard }></Route>
+						<Route path = "/surveys/new" component = { SurveyNew }></Route>
+					</div>
+				</BrowserRouter>
+			</div>
+		);
+	}
 };
 
-export default App;
+//connect action creators to App, actions passed to App as props, reference w this.props
+export default connect(null, actions)(App);
