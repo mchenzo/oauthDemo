@@ -20,6 +20,6 @@ module.exports = (app) => {
 	//cookie data is destroyed, session over
 	app.get('/api/logout', (req, res) => {
 		req.logout();
-		res.send(req.session);
+		res.send(req.user);
 	});
 }

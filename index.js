@@ -17,6 +17,10 @@ const app = express();
 
 //tell express to use cookies in app
 app.use(
+	/* cookie session takes a request and stores data in req.session
+	 * passport extracts data from req.session.passport
+	 * cookie is the session; has all the data
+	 */
 	cookieSession({
 		//cookie lifetime in milliseconds
 		maxAge: 30 * 24 * 60 * 60 * 1000,
