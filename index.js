@@ -12,7 +12,7 @@ const app = express();
 
 
 // ====================================================================
-// MIDDLE WARES
+// MIDDLE WARES: modify reqs before route handling
 // ====================================================================
 
 //tell express to use cookies in app
