@@ -6,7 +6,7 @@ class Header extends Component{
 		switch(this.props.auth) {
 			case null: return;
 			case false: return (<li><a href = "/auth/google">SIGN IN WITH GOOGLE</a></li>);
-			default: return <li><a>LOGOUT</a></li>;
+			default: return <li><a href = "/api/logout">LOGOUT</a></li>;
 		}
 	}
 
