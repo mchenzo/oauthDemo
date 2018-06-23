@@ -9,7 +9,15 @@ module.exports = (app) => {
 	}));
 
 	//upon redirection from oauth consent screen 
-	app.get('/auth/google/callback', passport.authenticate('google') );
+	app.get(
+		'/auth/google/callback', 
+		passport.authenticate('google'),
+		(req, res) => {
+			//after passport middleware finishes w auth, passes res object to this handler
+			//redirected to new route
+			res.redirect('/surveys');
+		}
+	);
 
 	//test route to return the user
 	app.get('/api/current_user', (req, res) => {
