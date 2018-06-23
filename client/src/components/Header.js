@@ -16,7 +16,7 @@ class Header extends Component{
 			<nav>
 				<div className = "nav-wrapper">
 
-					<a className = "left brand-logo">LOGO</a>
+					<a className = "left brand-logo" style = {{"marginLeft":"15px"}}>LOGO</a>
 
 					<ul className = "right">
 						{this.renderContent()}
@@ -27,7 +27,6 @@ class Header extends Component{
 		)
 	}
 }
-
 
 //connects state from store to props, components can access state
 function mapStateToProps({ auth }) {
